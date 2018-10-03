@@ -19,4 +19,3 @@ gpio -v
 ```
 gpio readall
 ```
-
