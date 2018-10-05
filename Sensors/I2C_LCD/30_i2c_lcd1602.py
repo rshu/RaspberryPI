@@ -1,15 +1,16 @@
 #!/usr/bin/env python
 import LCD1602
 import time
-import datetime
+from time import strftime
+from datetime import datetime
+from subprocess import *
 
-now = datetime.datetime.now()
 
 def setup():
 	LCD1602.init(0x27, 1)	# init(slave address, background light)
 	LCD1602.write(0, 0, now.strftime("%Y-%m-%d %H:%M"))
 	LCD1602.write(1, 1, 'The RAISE Lab!')
-	time.sleep(60)
+	time.sleep(10)
 
 def loop():
 	space = '                '
@@ -26,11 +27,10 @@ def loop():
 def destroy():
 	pass	
 
+
 if __name__ == "__main__":
-	try:
-		#setup()
-		while True:
-                    setup()
-                    pass
-	except KeyboardInterrupt:
-		destroy()
+    while True:
+        LCD1602.init(0x27, 1)	# init(slave address, background light)
+        LCD1602.write(0, 0, datetime.now().strftime("%Y-%m-%d %H:%M"))
+        LCD1602.write(0, 2, 'The RAISE LAB!')
+        time.sleep(20)
