@@ -4,7 +4,7 @@ import time
 from time import strftime
 from datetime import datetime
 from subprocess import *
-
+from weather import Weather, Unit
 
 def setup():
 	LCD1602.init(0x27, 1)	# init(slave address, background light)
@@ -25,14 +25,19 @@ def loop(content):
 def destroy():
 	pass	
 
+def getWeather(area):
+    weather = Weather(unit=Unit.CELSIUS)
+    lookup = weather.lookup_by_location(area)
+    condition = lookup.condition
+    return condition.temp
 
 if __name__ == "__main__":
-    """
-    while True:
-        LCD1602.init(0x27, 1)	# init(slave address, background light)
-        LCD1602.write(0, 0, datetime.now().strftime("%b%d %a %H:%M"))
-        LCD1602.write(0, 2, 'Welcome Dr. Xia!')
-        time.sleep(10)
-    """
     setup()
-    loop("Congrats for Patrick Xia passing the Written Exam!")
+    condition = getWeather('raleigh')
+    while True:
+#        LCD1602.init(0x27, 1)	# init(slave address, background light)
+        LCD1602.write(0, 0, datetime.now().strftime("%b%d %a %H:%M"))
+        LCD1602.write(0, 2, condition + " degree")
+        time.sleep(10)
+#    setup()
+#    loop("Congrats for Patrick Xia passing the Written Exam!")
