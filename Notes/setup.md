@@ -1,7 +1,3 @@
----
-typora-copy-images-to: ../Figures
----
-
 ## GPIO (General-purpose input/output)
 
 GPIO (General-purpose input/output) are hardware pins rows which locate in the top of RPi board. Raspberry Pi use GPIO pins to interact with other hardware including sensors, motors, and many many other peripheral devices.
@@ -28,5 +24,5 @@ gpio readall
 - The **power pins** pull power directly from the Raspberry Pi.
 - **GND** are the pins you use to ground your devices. It doesn’t matter which pin you use as they are all connected to the same line.
 
-![gpio](/home/rshu/Documents/RaspberryPI/Figures/gpio.jpg)
+![gpio](../Figures/gpio.jpg)
 
